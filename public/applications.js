@@ -343,6 +343,23 @@ setTimeout(function(){
   });
 }
 
+// post selected message index
+$('.logs').on('click', '.time', function() {
+  var friend = window.parent || window.opener;
+  var index;
+  if (friend) {
+    index = +$(this).attr('title').substr(1)
+    friend.postMessage({ type: 'LOGBOT_MESSAGE', index: index }, '*')
+  }
+})
+
+// post current date
+function postDateUpdate(date) {
+  var friend = window.parent || window.opener;
+  if (friend) {
+    friend.postMessage({ type: 'LOGBOT_DATE', date: date }, '*')
+  }
+}
 var enableDatePicker = function() {
   var useJqueryUIDatePicker = !Modernizr.inputtypes.date;
   
@@ -350,6 +367,7 @@ var enableDatePicker = function() {
     var targetDate = this.value;
     if (targetDate !== 'other') {
       location.href = location.href.replace(/[^\/]+$/, targetDate);
+      postDateUpdate(targetDate)
     } else {
       $( "#other-date-dialog" ).dialog( "open" );
     }
@@ -377,6 +395,7 @@ var enableDatePicker = function() {
         $( this ).dialog( "close" );
         var targetDate = $( "#other-date-picker" ).val();
         location.href = location.href.replace(/[^\/]+$/, targetDate);
+        postDateUpdate(targetDate)
       }
     },
     beforeClose: function() {
@@ -395,6 +414,7 @@ var enableDatePicker = function() {
       $( "#date-picker" ).val( currentDay );
       var targetDate = $("#other-date-picker").val();
       location.href = location.href.replace(/[^\/]+$/, targetDate);
+      postDateUpdate(targetDate)
     }
   });
   
