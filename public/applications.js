@@ -221,8 +221,8 @@ var getColor = function() {
       console.log('missing md5 support, using random color now!')
     }
     
-    var h = Math.floor((frag & 0xff0000 >> 16) / 255 * 360);
-    var s = Math.floor((frag & 0xff00 >> 8) / 255 * 60 + 20);
+    var h = Math.floor(((frag & 0xff0000) >> 16) / 255 * 360);
+    var s = Math.floor(((frag & 0xff00) >> 8) / 255 * 60 + 20);
     var l = Math.floor((frag & 0xff) / 255 * 20 + 50);
     
     //convert color with jQuery
