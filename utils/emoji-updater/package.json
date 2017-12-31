@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "name": "emoji-updater",
+  "version": "0.0.1",
+  "description": "Generate `emoji.js` from the Slack emoji page",
+  "main": "index.js",
+  "scripts": {
+    "start": "pbpaste | node ./index.js > emoji.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "emoji",
+    "macro"
+  ],
+  "author": "caasi Huang",
+  "license": "SEE LICENSE IN ../../LICENSE",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2"
+  }
+}
