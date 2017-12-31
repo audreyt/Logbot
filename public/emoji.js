@@ -88,7 +88,7 @@
     ':wagl:': '<img class="emojione" alt=":wagl:" src="//emoji.slack-edge.com/T02G2SXKM/wagl/00993845a9b03a5d.png" />'
   };
 
-  exp = /:S+:/g;
+  exp = /\:\S+\:/g;
   emoji = function(msg) {
     var m, result, alias;
 

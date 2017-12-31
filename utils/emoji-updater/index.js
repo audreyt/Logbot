@@ -39,7 +39,7 @@ process.stdin.on('end', function() {
     ${ emoji.join(',\n    ') }
   };
 
-  exp = /\:\S+:/g;
+  exp = /\\:\\S+\\:/g;
   emoji = function(msg) {
     var m, result, alias;
 
