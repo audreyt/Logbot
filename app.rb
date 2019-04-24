@@ -77,11 +77,27 @@ module Util
   end
 
   def slack_data msg
-    if msg['nick'].include?('slack') && msg['nick'].include?('bot')
+    # mattermost-bridge
+    if msg['nick'].include?('g0v-slack')
+      begin
+	return msg['msg'].match(/\A(.+?)@slack-legacy: (.+)\Z/)[1..2]
+      rescue
+        return ['↵', msg['msg']]
+      end
+    # transition period
+    elsif msg['nick'].include?('Guest30062')
       begin
         return msg['msg'].match(/\A<(.+?)> (.+)\Z/)[1..2]
       rescue
-        return []
+        return ['↵', msg['msg']]
+      end
+    # slack-irc-plugin
+    elsif msg['nick'].include?('slack') && msg['nick'].include?('bot')
+      begin
+        return msg['msg'].match(/\A<(.+?)> (.+)\Z/)[1..2]
+      rescue
+        # may has the same author as the last message
+        return ['↵', msg['msg']]
       end
     else
       []
