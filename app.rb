@@ -78,7 +78,7 @@ module Util
 
   def slack_data msg
     # mattermost-bridge
-    if msg['nick'].include?('g0v-slack')
+    if msg['nick'].include?('g0v-slack') || msg['nick'].include?('g0v-bridge')
       begin
 	return msg['msg'].match(/\A(.+?)@slack-legacy: (.+)\Z/)[1..2]
       rescue
